@@ -57,25 +57,6 @@ print(vectorizer.get_feature_names())
 print(X_all.shape)
 print(y_all.shape)
 
-i = 1
-string = db.data[i]
-
-xor = string.count('xor')
-shl = string.count('shl')+string.count('shr')+string.count('sal')\
-               +string.count('sar')+string.count('shld')+string.count('shrd')
-cmp_ = string.count('cmp')
-xmm = string.count('xmm')
-jmp = string.count('jmp') 
-mov = string.count('mov')
-l = len(db.data[i])
-
-mappa_parametri = {'xor':xor,'shl':shl,'cmp':cmp_,'xmm':xmm,'jmp':jmp,'mov':mov,'length':l}
-
-print(db.target[i])
-
-for x in mappa_parametri:
-  print(x + ': ' + str(mappa_parametri.get(x)) + '\t')
-
 """Split data"""
 
 X_train, X_test, y_train, y_test = train_test_split(X_all, y_all, 
@@ -128,7 +109,10 @@ bs = pd.read_json(filename, lines=True)
 print('File loaded: %d samples.\n\n' %(len(db.index)))
 print(bs)
 
-"""Compute vectorizer terms again"""
+"""Compute vectorizer terms again and do prediction over the new unlabeled set
+
+
+"""
 
 # In this way we are able to manipulate the file as a vector of numbers
 
@@ -137,4 +121,9 @@ item = np.array(list(bs.lista_asm))
 new_x = vectorizer.transform(item)
 new_y = classifier.predict(new_x)
 
-print('%s %s' %(item,new_y))
+#print('%s %s' %(item,new_y))
+
+"""Show a random sample"""
+
+id = random.randrange(0,len(new_y))
+print('%d %s %s' %(id,new_y[id],bs.lista_asm[id]))
