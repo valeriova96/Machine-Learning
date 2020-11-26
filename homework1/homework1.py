@@ -127,3 +127,10 @@ new_y = classifier.predict(new_x)
 
 id = random.randrange(0,len(new_y))
 print('%d %s %s' %(id,new_y[id],bs.lista_asm[id]))
+
+f = open('1894954.txt',mode='w+')
+
+for item in new_y:
+  f.write(item + '\n')
+
+f.close()
