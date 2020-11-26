@@ -32,7 +32,10 @@ import json
 filename = '/content/drive/My Drive/ML/noduplicatedataset.json'
 db = pd.read_json(filename, lines=True)
 print('File loaded: %d samples.\n\n' %(len(db.index)))
-print(db)
+
+#print(db)
+# Print a random item
+print('%d %s %s' %(id,db.semantic[38],db.lista_asm[38]))
 
 ###
 # From now on the elements of the json file can b accessed
@@ -123,7 +126,7 @@ new_y = classifier.predict(new_x)
 
 #print('%s %s' %(item,new_y))
 
-"""Show a random sample"""
+"""Show a random sample and print output onto a txt file"""
 
 id = random.randrange(0,len(new_y))
 print('%d %s %s' %(id,new_y[id],bs.lista_asm[id]))
