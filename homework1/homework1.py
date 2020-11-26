@@ -133,7 +133,7 @@ print('%d %s %s' %(id,new_y[id],bs.lista_asm[id]))
 
 f = open('1894954.txt',mode='w+')
 
-for item in new_y:
-  f.write(item + '\n')
+for index in range(0,len(new_y)):
+  f.write(new_y[index] + '\n')
 
 f.close()
